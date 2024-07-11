@@ -93,6 +93,15 @@ class ViewController: UIViewController {
     @IBAction func unwindAction(unwindSegue: UIStoryboardSegue){
     }
     
+    @IBAction func showCalculationsList(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
+        if let vc = calculationsListVC as? CalculationsListViewController {
+            vc.result = label.text
+        }
+        show(calculationsListVC, sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "CALCULATIONS_LIST",
               let calculationsListVC = segue.destination as? CalculationsListViewController else { return }
@@ -115,6 +124,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         resetLabelText()
     }
+    
+    
     
     func calculate() throws -> Double {
         guard

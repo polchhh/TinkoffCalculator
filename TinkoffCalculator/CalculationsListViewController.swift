@@ -30,4 +30,7 @@ class CalculationsListViewController: UIViewController {
         super.viewDidLoad()
         CalculationLabel.text = result
     }
+    @IBAction func dismissVC(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
