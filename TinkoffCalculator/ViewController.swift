@@ -38,7 +38,10 @@ enum CalculationHistoryItem{
 }
 
 class ViewController: UIViewController {
-    var counter: Int = 0
+    
+    var calculationHistory: [CalculationHistoryItem] = []
+    var calculations: [(expression:[CalculationHistoryItem], result: Double)] = []
+
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         guard 
@@ -52,18 +55,6 @@ class ViewController: UIViewController {
             label.text = buttonText
         } else {
             label.text?.append(buttonText)
-        }
-    }
-    
-    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) {
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "CALCULATIONS_LIST",
-              let calculationListVC = segue.destination as? CalculationsListViewController else { return }
-        if counter != 0 {
-            calculationListVC.result = label.text
         }
     }
     
@@ -89,7 +80,6 @@ class ViewController: UIViewController {
     
     @IBAction func clearButtonPressed() {
         calculationHistory.removeAll()
-        counter = 0
         resetLabelText()
     }
     
@@ -102,10 +92,10 @@ class ViewController: UIViewController {
         do{
             let result = try calculate()
             label.text = numberFormatter.string(from: NSNumber(value: result))
+            calculations.append((calculationHistory, result))
         } catch {
             label.text = "Ошибка"
         }
-        counter += 1
         calculationHistory.removeAll()
     }
     
@@ -113,7 +103,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
         if let vc = calculationsListVC as? CalculationsListViewController {
-            vc.result = label.text
+            vc.calculations = calculations
         }
         navigationController?.pushViewController(calculationsListVC, animated: true)
     }
@@ -121,7 +111,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var label: UILabel!
     
-    var calculationHistory: [CalculationHistoryItem] = []
     
     lazy var numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()

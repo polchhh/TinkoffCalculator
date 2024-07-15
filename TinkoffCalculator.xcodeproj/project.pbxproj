@@ -13,6 +13,8 @@
 		2A91DB582C4007F80024D0F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB1E69F2C3AFA2800C27D09 /* Main.storyboard */; };
 		2A91DB592C4007FA0024D0F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB1E69F2C3AFA2800C27D09 /* Main.storyboard */; };
 		2A91DB5A2C4007FB0024D0F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB1E69F2C3AFA2800C27D09 /* Main.storyboard */; };
+		2AA2DCD02C4551B80052B692 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2DCCF2C4551B80052B692 /* HistoryTableViewCell.swift */; };
+		2AA2DCD22C4552B80052B692 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2DCD12C4552B80052B692 /* HistoryTableViewCell.xib */; };
 		2AB1E69A2C3AFA2800C27D09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1E6992C3AFA2800C27D09 /* AppDelegate.swift */; };
 		2AB1E69C2C3AFA2800C27D09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1E69B2C3AFA2800C27D09 /* SceneDelegate.swift */; };
 		2AB1E69E2C3AFA2800C27D09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1E69D2C3AFA2800C27D09 /* ViewController.swift */; };
@@ -43,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		2A35B26C2C3C2771005A5266 /* CalculationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsListViewController.swift; sourceTree = "<group>"; };
+		2AA2DCCF2C4551B80052B692 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		2AA2DCD12C4552B80052B692 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		2AB1E6962C3AFA2800C27D09 /* TinkoffCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AB1E6992C3AFA2800C27D09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AB1E69B2C3AFA2800C27D09 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +87,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AA2DCCE2C45516A0052B692 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				2A35B26C2C3C2771005A5266 /* CalculationsListViewController.swift */,
+				2AA2DCCF2C4551B80052B692 /* HistoryTableViewCell.swift */,
+				2AA2DCD12C4552B80052B692 /* HistoryTableViewCell.xib */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		2AB1E68D2C3AFA2800C27D09 = {
 			isa = PBXGroup;
 			children = (
@@ -106,10 +120,10 @@
 		2AB1E6982C3AFA2800C27D09 /* TinkoffCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				2AA2DCCE2C45516A0052B692 /* History */,
 				2AB1E6992C3AFA2800C27D09 /* AppDelegate.swift */,
 				2AB1E69B2C3AFA2800C27D09 /* SceneDelegate.swift */,
 				2AB1E69D2C3AFA2800C27D09 /* ViewController.swift */,
-				2A35B26C2C3C2771005A5266 /* CalculationsListViewController.swift */,
 				2AB1E69F2C3AFA2800C27D09 /* Main.storyboard */,
 				2AB1E6A22C3AFA2A00C27D09 /* Assets.xcassets */,
 				2AB1E6A42C3AFA2A00C27D09 /* LaunchScreen.storyboard */,
@@ -240,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB1E6A32C3AFA2A00C27D09 /* Assets.xcassets in Resources */,
+				2AA2DCD22C4552B80052B692 /* HistoryTableViewCell.xib in Resources */,
 				2AB1E6A62C3AFA2A00C27D09 /* Base in Resources */,
 				2AB1E6A12C3AFA2800C27D09 /* Base in Resources */,
 				2A91DB582C4007F80024D0F6 /* Main.storyboard in Resources */,
@@ -273,6 +288,7 @@
 				2AB1E69E2C3AFA2800C27D09 /* ViewController.swift in Sources */,
 				2AB1E69A2C3AFA2800C27D09 /* AppDelegate.swift in Sources */,
 				2AB1E69C2C3AFA2800C27D09 /* SceneDelegate.swift in Sources */,
+				2AA2DCD02C4551B80052B692 /* HistoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
