@@ -8,7 +8,7 @@
 import UIKit
 
 class CalculationsListViewController: UIViewController {
-    var result: String?
+    var result: String? = "NoData"
     
     @IBOutlet weak var CalculationLabel: UILabel!
     

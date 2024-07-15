@@ -208,7 +208,7 @@
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="showCalculationsList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0W2-9R-QuB"/>
+                                    <segue destination="1uh-eo-UV6" kind="show" identifier="CALCULATIONS_LIST" id="HcZ-B6-Ej1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -300,7 +300,7 @@
             </objects>
             <point key="canvasLocation" x="973.28244274809151" y="-2.1126760563380285"/>
         </scene>
-        <!--История-->
+        <!--Прошлые вычисления-->
         <scene sceneID="b7l-AP-8OF">
             <objects>
                 <viewController storyboardIdentifier="CalculationsListViewController" id="1uh-eo-UV6" customClass="CalculationsListViewController" customModule="TinkoffCalculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -308,14 +308,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWE-Xf-cZQ">
-                                <rect key="frame" x="196.66666666666666" y="426" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NoData" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWE-Xf-cZQ">
+                                <rect key="frame" x="167.66666666666666" y="416" width="57.666666666666657" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-NA-scN">
-                                <rect key="frame" x="151" y="476" width="91" height="35"/>
+                                <rect key="frame" x="151" y="486.33333333333331" width="91" height="34.999999999999943"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Закрыть"/>
                                 <connections>
@@ -323,7 +323,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Результат:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohx-VC-gdz">
-                                <rect key="frame" x="144.33333333333334" y="349.66666666666669" width="104.66666666666666" height="26.333333333333314"/>
+                                <rect key="frame" x="144.33333333333334" y="339.66666666666669" width="104.66666666666666" height="26.333333333333314"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -340,14 +340,14 @@
                             <constraint firstItem="ohx-VC-gdz" firstAttribute="centerX" secondItem="xbo-yP-2hh" secondAttribute="centerX" id="wvK-fl-gGG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="История" id="xPR-tc-dAW"/>
+                    <navigationItem key="navigationItem" title="Прошлые вычисления" id="xPR-tc-dAW"/>
                     <connections>
                         <outlet property="CalculationLabel" destination="VWE-Xf-cZQ" id="eZO-Dp-Eej"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSy-a7-cvd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1703.0534351145038" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="1837" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kOr-fm-LsR">

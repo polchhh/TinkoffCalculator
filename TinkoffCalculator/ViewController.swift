@@ -38,7 +38,8 @@ enum CalculationHistoryItem{
 }
 
 class ViewController: UIViewController {
-
+    var counter: Int = 0
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         guard 
             let buttonText = sender.currentTitle
@@ -51,6 +52,18 @@ class ViewController: UIViewController {
             label.text = buttonText
         } else {
             label.text?.append(buttonText)
+        }
+    }
+    
+    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "CALCULATIONS_LIST",
+              let calculationListVC = segue.destination as? CalculationsListViewController else { return }
+        if counter != 0 {
+            calculationListVC.result = label.text
         }
     }
     
@@ -71,11 +84,12 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     @IBAction func clearButtonPressed() {
         calculationHistory.removeAll()
+        counter = 0
         resetLabelText()
     }
     
@@ -85,13 +99,13 @@ class ViewController: UIViewController {
             let labelNumber = numberFormatter.number(from: labelText)?.doubleValue
             else{ return }
         calculationHistory.append(.number(labelNumber))
-        
         do{
             let result = try calculate()
             label.text = numberFormatter.string(from: NSNumber(value: result))
         } catch {
             label.text = "Ошибка"
         }
+        counter += 1
         calculationHistory.removeAll()
     }
     
