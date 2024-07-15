@@ -30,7 +30,13 @@ class CalculationsListViewController: UIViewController {
         super.viewDidLoad()
         CalculationLabel.text = result
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     @IBAction func dismissVC(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 }

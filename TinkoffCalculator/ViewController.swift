@@ -69,6 +69,11 @@ class ViewController: UIViewController {
         resetLabelText()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     @IBAction func clearButtonPressed() {
         calculationHistory.removeAll()
         resetLabelText()
@@ -90,23 +95,15 @@ class ViewController: UIViewController {
         calculationHistory.removeAll()
     }
     
-    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue){
-    }
-    
     @IBAction func showCalculationsList(_ sender: Any) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
         if let vc = calculationsListVC as? CalculationsListViewController {
             vc.result = label.text
         }
-        show(calculationsListVC, sender: self)
+        navigationController?.pushViewController(calculationsListVC, animated: true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "CALCULATIONS_LIST",
-              let calculationsListVC = segue.destination as? CalculationsListViewController else { return }
-        calculationsListVC.result = label.text
-    }
     
     @IBOutlet weak var label: UILabel!
     
