@@ -9,7 +9,10 @@ import UIKit
 
 class CalculationsListViewController: UIViewController {
     
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
+    var groupedCalculations: [String: [Calculation]] = [:]
+    var sortedDates: [String] = []
+    
     @IBOutlet weak var tableView: UITableView!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -39,6 +42,8 @@ class CalculationsListViewController: UIViewController {
         
         let nib = UINib(nibName: "HistoryTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HistoryTableViewCell")
+        
+        groupCalculationsByDate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +67,19 @@ class CalculationsListViewController: UIViewController {
         }
         return result
     }
-}
+    
+    private func groupCalculationsByDate() {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            
+            groupedCalculations = Dictionary(grouping: calculations) { 
+                calculation in dateFormatter.string(from: calculation.date)
+            }
+            
+            sortedDates = groupedCalculations.keys.sorted(by: { dateFormatter.date(from: $0)! > dateFormatter.date(from: $1)! })
+        }
+    }
+
 
 extension CalculationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -70,15 +87,27 @@ extension CalculationsListViewController: UITableViewDelegate {
     }
 }
 
+
 extension CalculationsListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sortedDates.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calculations.count
+        let dateKey = sortedDates[section]
+        return groupedCalculations[dateKey]?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sortedDates[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
-        let historyItem = calculations[indexPath.row]
-        cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
+        let dateKey = sortedDates[indexPath.section]
+        if let historyItem = groupedCalculations[dateKey]?[indexPath.row] {
+            cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
+        }
         return cell
     }
 }

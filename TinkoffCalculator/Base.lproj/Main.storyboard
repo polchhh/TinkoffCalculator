@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Калькулятор-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TinkoffCalculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -280,6 +280,7 @@
                             <constraint firstItem="auq-Z0-E93" firstAttribute="bottom" secondItem="dMV-1c-wcQ" secondAttribute="top" id="nvJ-bH-yQ0"/>
                             <constraint firstItem="S7G-Ee-KnG" firstAttribute="bottom" secondItem="CQw-ZB-Nag" secondAttribute="top" id="ogG-7X-WKW"/>
                             <constraint firstItem="dMV-1c-wcQ" firstAttribute="bottom" secondItem="bEv-K1-xjq" secondAttribute="top" id="omq-sD-vMw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YIX-aZ-iB4" secondAttribute="trailing" symbolic="YES" id="pHo-t3-Lmi"/>
                             <constraint firstItem="eNi-Tt-mqq" firstAttribute="bottom" secondItem="S7G-Ee-KnG" secondAttribute="top" id="pLF-3v-CuN"/>
                             <constraint firstItem="MyR-YF-wMj" firstAttribute="leading" secondItem="R7l-6C-tiW" secondAttribute="trailing" id="pcm-QL-UjU"/>
                             <constraint firstItem="gld-4l-frg" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.13" id="sxg-ZK-Pbt"/>
@@ -291,7 +292,7 @@
                             <constraint firstItem="R7l-6C-tiW" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.25" id="y0R-bk-imP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Калькулятор" id="Non-Ft-axQ"/>
+                    <navigationItem key="navigationItem" id="Non-Ft-axQ"/>
                     <connections>
                         <outlet property="label" destination="yyy-q3-XVS" id="oB9-uf-Van"/>
                     </connections>
@@ -357,13 +358,13 @@
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -40,7 +40,8 @@ enum CalculationHistoryItem{
 class ViewController: UIViewController {
     
     var calculationHistory: [CalculationHistoryItem] = []
-    var calculations: [(expression:[CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
+    let calculationHistoryStorage = CalculationHistoryStorage()
 
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -75,7 +76,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     @IBAction func clearButtonPressed() {
@@ -92,7 +93,9 @@ class ViewController: UIViewController {
         do{
             let result = try calculate()
             label.text = numberFormatter.string(from: NSNumber(value: result))
-            calculations.append((calculationHistory, result))
+            let newCalculation = Calculation(expression: calculationHistory, result: result, date: Date.now)
+            calculations.append(newCalculation)
+            calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Ошибка"
         }
@@ -123,9 +126,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         resetLabelText()
+        calculations = calculationHistoryStorage.loadHisrory()
     }
-    
-    
     
     func calculate() throws -> Double {
         guard
