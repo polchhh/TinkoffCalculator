@@ -42,6 +42,32 @@ class ViewController: UIViewController {
     var calculationHistory: [CalculationHistoryItem] = []
     var calculations: [Calculation] = []
     let calculationHistoryStorage = CalculationHistoryStorage()
+    
+    private let alertView: AlertView = {
+        let screenBounds = UIScreen.main.bounds
+        let alertHeight: CGFloat = 100
+        let alertWidth: CGFloat = screenBounds.width - 40
+        let x: CGFloat = screenBounds.width / 2 - alertWidth / 2
+        let y: CGFloat = screenBounds.height / 2 - alertHeight / 2
+        let alertFrame = CGRect(x: x, y: y, width: alertWidth, height: alertHeight)
+        let alertView = AlertView(frame: alertFrame)
+        return alertView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        resetLabelText()
+        calculations = calculationHistoryStorage.loadHisrory()
+        view.addSubview(alertView)
+        alertView.alpha = 0
+        alertView.alertText = "ПаСхАлКа"
+        
+        view.subviews.forEach {
+            if type(of: $0) == UIButton.self {
+                $0.layer.cornerRadius = 0
+            }
+        }
+    }
 
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -52,10 +78,15 @@ class ViewController: UIViewController {
         if buttonText == "," && label.text?.contains(",") == true {
             return
         }
+        
         if label.text == "0"{
             label.text = buttonText
         } else {
             label.text?.append(buttonText)
+        }
+        
+        if label.text == "3,141592"{
+            animateAlert()
         }
     }
     
@@ -98,6 +129,7 @@ class ViewController: UIViewController {
             calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Ошибка"
+            label.shake()
         }
         calculationHistory.removeAll()
     }
@@ -122,13 +154,7 @@ class ViewController: UIViewController {
         numberFormatter.numberStyle = .decimal
         return numberFormatter
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        resetLabelText()
-        calculations = calculationHistoryStorage.loadHisrory()
-    }
-    
+
     func calculate() throws -> Double {
         guard
             case .number(let firstNumber) = calculationHistory[0] else { return 0 }
@@ -148,5 +174,44 @@ class ViewController: UIViewController {
     func resetLabelText(){
         label.text = "0"
     }
+    
+    func animateAlert(){
+        if !view.contains(alertView){
+            alertView.alpha = 0
+            alertView.center = view.center
+            view.addSubview(alertView)
+        }
+        
+        UIView.animate(withDuration: 0.5) {
+            self.alertView.alpha = 1
+        } completion: { (_) in
+            UIView.animate(withDuration:  0.5) {
+                var newCenter = self.label.center
+                newCenter.y -= self.alertView.bounds.height
+                self.alertView.center = newCenter
+            }
+        }
+    }
+    
+    func animateBackground(){
+        let animation = CABasicAnimation(keyPath: "backgroundColor")
+        animation.duration = 1
+        animation.fromValue = UIColor.white.cgColor
+        animation.toValue = UIColor.blue.cgColor
+        
+        view.layer.add(animation, forKey: "backgroundColor")
+    }
 }
 
+extension UILabel {
+    func shake(){
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 5
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: center.x - 5, y: center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: center.x+5, y: center.y))
+        
+        layer.add(animation, forKey: "position")
+    }
+}
